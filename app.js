@@ -1,16 +1,11 @@
 const express = require('express');
 const parser = require('body-parser');
-const mongo = require('mongodb').MongoClient;
-const config = require("./.dotenv");
+const mongoose = require('mongoose');
+const config = require("./dotenv");
 
 let db = null;
 app = express();
-mongo.connect(config.config.dbConnection, function (err, client) {
-  if (err) {
-    console.log(err);
-    return;
-  }
-  db = client.db("ecatalog");
-});
-
+mongoose.connect(config.config.dbConnection, { useNewUrlParser: true }, function (err) {
+  if (err) console.log(err);
+})
 app.listen(8080, () => console.log("server started listening on 8080"));
