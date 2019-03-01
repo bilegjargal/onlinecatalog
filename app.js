@@ -23,25 +23,18 @@ app.use((req, res, next) => {
   next();
 });
 
-//mongoose schema
-var userSchema = new mongoose.Schema({
-  username: String,
-  password: String
-});
-var User = mongoose.model("user", userSchema);
-
 //2. login
 app.post("/login", async function (req, res) {
 
   let user = undefined;
-  await User.find({ username: req.body.uname }, null, function (err, data) {
-    console.log(data);
-    if (err)
-      console.log(err);
-    user = data;
-    console.log("user data: ", data);
-  });
-
+  mongoose.connection.db
+    .collection("user", await function (err, collection) {
+      collection.findOne({ "username": req.body.uname }, function (err, data) {
+        if (err) console.log(err);
+        console.log(data);
+        user = data[0];
+      });
+    });
   console.log("gg");
   if (user) {
     const token = jwt.sign({
