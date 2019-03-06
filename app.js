@@ -7,7 +7,7 @@ const config = require("./dotenv");
 
 app = express();
 
-//1. mongoose
+//0. mongoose
 mongoose.connect(config.config.dbConnection, { useNewUrlParser: true },
   function (err, client) {
     if (err) console.log(err);
@@ -23,17 +23,35 @@ app.use((req, res, next) => {
   next();
 });
 
+//1.create user
+app.post("/signup", function (req, res) {
+  let query = { "username": req.body.username, "password": req.body.password };
+  req.conn.db.collection("user", function (err, collection) {
+    collection.findOneAndUpdate(
+      { "username": req.body.username },
+      query,
+      { "upsert": true, new: true },
+      function (err, data) {
+        if (err)
+          console.log(err);
+        console.log(data);
+      }
+    );
+  });
+});
+
 //2. login
 app.post("/login", async function (req, res) {
-
   let user = undefined;
   await req.conn.db
     .collection("user", function (err, collection) {
-      collection.findOne({ "username": req.body.uname }, function (err, data) {
+      collection.findOne({ "username": req.body.username }, function (err, data) {
         if (err)
           console.log(err);
-
-        user = data;
+        if (req.body.password == data.password) { // change it later by using bcrypt
+          console.log("user is valid", data.password);
+          user = data;
+        }
         if (user) { //if user is found
           const token = jwt.sign({
             name: user.username,
@@ -47,5 +65,6 @@ app.post("/login", async function (req, res) {
       });
     });
 });
+
 
 app.listen(8080, () => console.log("server started listening on 8080"));
