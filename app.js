@@ -25,16 +25,18 @@ app.use((req, res, next) => {
 
 //1.create user
 app.post("/signup", function (req, res) {
-  let query = { "username": req.body.username, "password": req.body.password };
+  let query = { $set: { "username": req.body.username, "password": req.body.password } };
   req.conn.db.collection("user", function (err, collection) {
     collection.findOneAndUpdate(
       { "username": req.body.username },
       query,
       { "upsert": true, new: true },
       function (err, data) {
-        if (err)
-          console.log(err);
-        console.log(data);
+        if (err) {
+          res.json({ success: false, message: err });
+          console.log("####ERROR:", err);
+        }
+        res.json({ success: true });
       }
     );
   });
