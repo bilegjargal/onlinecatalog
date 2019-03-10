@@ -33,10 +33,12 @@ app.post("/signup", function (req, res) {
       { "upsert": true, new: true },
       function (err, data) {
         if (err) {
-          res.json({ success: false, message: err });
+          res.json({ success: false, errMessage: err });
           console.log("####ERROR:", err);
+        } else {
+          res.json({ success: true });
+
         }
-        res.json({ success: true });
       }
     );
   });
@@ -68,5 +70,23 @@ app.post("/login", async function (req, res) {
     });
 });
 
+
+app.post("/new-article", function (req, res) {
+  let query = { $set: { "title": req.body.title, "info": req.body.info } };
+  req.conn.db.collection("articles", function (err, colleciton) {
+    collection.findOneAndUpdate(
+      { "title": req.body.title },
+      query,
+      { "upsert": false, new: true },
+      function (err, data) {
+        if (err) {
+          res.json({ success: false, errMessage: err });
+          console.log("####ERROR:", err);
+        } else {
+          res.json({ success: true });
+        }
+      });
+  });
+});
 
 app.listen(8080, () => console.log("server started listening on 8080"));
