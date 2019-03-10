@@ -44,11 +44,12 @@ app.post("/signup", function (req, res) {
   });
 });
 
+//TODO: change the json web token secret key
 //2. login
 app.post("/login", async function (req, res) {
   let user = undefined;
   await req.conn.db
-    .collection("user", function (err, collection) {
+    .collection("user", function (error, collection) {
       collection.findOne({ "username": req.body.username }, function (err, data) {
         if (err)
           console.log(err);
@@ -58,8 +59,8 @@ app.post("/login", async function (req, res) {
         }
         if (user) { //if user is found
           const token = jwt.sign({
-            name: user.username,
-          }, "secret", { expiresIn: "2h" });
+            username: user.username,
+          }, "secretkey", { expiresIn: "2h" });
           res.header('Authorization', `Bearer ${token}`);
           res.json({ success: true, token: token });
         } else {
@@ -67,13 +68,32 @@ app.post("/login", async function (req, res) {
           res.json({ success: false });
         }
       });
+      if (error) {
+        console.log(error);
+      }
     });
 });
 
-
-app.post("/new-article", function (req, res) {
-  let query = { $set: { "title": req.body.title, "info": req.body.info } };
-  req.conn.db.collection("articles", function (err, colleciton) {
+//3. create new article
+app.post("/new-article", async function (req, res) {
+  let token = req.query.tok;
+  let username;
+  jwt.verify(token, "secretkey", await function (err, decoded) {
+    if (err) {
+      console.log("####ERROR:");
+    } else {
+      username = decoded.username;
+    }
+  });
+  let query = {
+    $set: {
+      "title": req.body.title,
+      "info": req.body.info,
+      "createdby": username,
+      $currentDate: { "timestamp": { $type: "timestamp" } },
+    }
+  };
+  req.conn.db.collection("catalogs", function (err, colleciton) {
     collection.findOneAndUpdate(
       { "title": req.body.title },
       query,
