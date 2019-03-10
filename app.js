@@ -85,27 +85,30 @@ app.post("/new-catalog", async function (req, res) {
       username = decoded.username;
     }
   });
+  console.log(username);
   let query = {
     $set: {
       "title": req.body.title,
       "info": req.body.info,
-      "createdby": username,
-      $currentDate: { "timestamp": { $type: "timestamp" } },
+      "createdBy": username,
+      "createdAt": new Date(),
     }
   };
-  req.conn.db.collection("catalogs", function (err, colleciton) {
+  req.conn.db.collection("catalog", function (err, collection) {
     collection.findOneAndUpdate(
       { "title": req.body.title },
       query,
-      { "upsert": false, new: true },
+      { "upsert": true, new: true },
       function (err, data) {
         if (err) {
           res.json({ success: false, errMessage: err });
           console.log("####ERROR:", err);
         } else {
+          console.log(query);
           res.json({ success: true });
         }
       });
+
   });
 });
 
