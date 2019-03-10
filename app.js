@@ -44,8 +44,8 @@ app.post("/signup", function (req, res) {
   });
 });
 
-//TODO: change the json web token secret key
 //2. login
+//TODO: change the json web token secret key
 app.post("/login", async function (req, res) {
   let user = undefined;
   await req.conn.db
@@ -75,7 +75,8 @@ app.post("/login", async function (req, res) {
 });
 
 //3. create new catalog
-app.post("/new-catalog", async function (req, res) {
+//TODO: save token to localStorage
+app.post("/admin/new-catalog", async function (req, res) {
   let token = req.query.tok;
   let username;
   jwt.verify(token, "secretkey", await function (err, decoded) {
