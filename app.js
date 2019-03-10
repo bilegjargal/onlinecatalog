@@ -74,8 +74,8 @@ app.post("/login", async function (req, res) {
     });
 });
 
-//3. create new article
-app.post("/new-article", async function (req, res) {
+//3. create new catalog
+app.post("/new-catalog", async function (req, res) {
   let token = req.query.tok;
   let username;
   jwt.verify(token, "secretkey", await function (err, decoded) {
