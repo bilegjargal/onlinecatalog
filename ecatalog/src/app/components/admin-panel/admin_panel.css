@@ -1,0 +1,27 @@
+*{
+  margin: 0px;
+  padding: 0px;
+  font-family: 'Roboto Light', sans-serif;
+}
+.container{
+  display: flex;
+  margin:auto;
+  background-color: #eeeeee;
+}
+.navbar{
+  width: 20%; 
+}
+ul{
+  background: #000000;
+  color: #eeeeee;
+  text-transform: uppercase;
+  list-style-type: none;
+  margin: 0px;
+  font-size: 18px;
+  text-align: start;
+  padding: 0px 0px 0px 20%;
+}
+li{
+  padding: 20px 5px;
+  border-bottom: 1px black solid;
+}
