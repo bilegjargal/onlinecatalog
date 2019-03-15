@@ -1,0 +1,40 @@
+body {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+.header {
+  margin: 0;
+  padding: 0;
+  background-color: black;
+  color: white;
+  text-align: left;
+}
+.header p {
+  margin-left: 8%;
+}
+.navbar {
+  margin: 0;
+  overflow: hidden;
+  background-color: #201715;
+}
+#logo {
+  float: left;
+}
+.navbar a {
+  float: right;
+  display: block;
+  text-decoration: none;
+  color: white;
+  text-transform: uppercase;
+  font-family: sans-serif;
+  text-align: center;
+  padding: 0.5%;
+  margin: 1%;
+}
+.navbar a:hover {
+  opacity: 0.7;
+}
+.slider img {
+  width: 100%;
+}
