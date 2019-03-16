@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { FormGroup, FormControl, FormBuilder, FormsModule } from "@angular/forms";
+import { FormGroup, FormControl, FormBuilder } from "@angular/forms";
 
 @Component({
-  selector: 'app-admin-login',
-  templateUrl: './admin-login.component.html',
-  styleUrls: ['./admin-login.component.css']
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.css'],
 })
-export class AdminLoginComponent {
+export class LoginComponent {
 
   loginForm: FormGroup;
   error = "";

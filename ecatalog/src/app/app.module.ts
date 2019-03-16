@@ -5,16 +5,16 @@ import { HttpClientModule } from "@angular/common/http";
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { AdminComponent } from './components/admin/admin.component';
+import { LoginComponent } from './admin/login/login.component';
 import { HomeComponent } from './components/home/home.component';
-import { AdminPanelComponent } from './components/admin-panel/admin-panel.component';
-
+import { AdminPanelComponent } from './admin/admin-panel/admin-panel.component';
 @NgModule({
   declarations: [
     AppComponent,
-    AdminComponent,
+    LoginComponent,
     HomeComponent,
-    AdminPanelComponent
+    AdminPanelComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
