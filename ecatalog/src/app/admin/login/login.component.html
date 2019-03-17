@@ -1,5 +1,9 @@
-<form class="form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-  <input formControlName="username" type="text" placeholder="Username" autocomplete="off">
-  <input formControlName="password" type="password" placeholder="Password" autocomplete="off" />
-  <button class="buttonGeneral" type="submit">Login</button>
-</form>
+<div class="container">
+  <link href="https://fonts.googleapis.com/css?family=Slabo+27px" rel="stylesheet">
+  <form class="form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <h4>Admin panel</h4>
+    <input formControlName="username" type="text" placeholder="Username" autocomplete="off">
+    <input formControlName="password" type="password" placeholder="Password" autocomplete="off" />
+    <button class="buttonGeneral" type="submit">Login</button>
+  </form>
+</div>
