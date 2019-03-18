@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { FormGroup, FormControl, FormBuilder } from "@angular/forms";
+import { FormGroup, FormControl, FormBuilder, ReactiveFormsModule } from "@angular/forms";
 
 @Component({
   selector: 'app-login',
@@ -35,7 +35,7 @@ export class LoginComponent {
       console.log(data);
       if (data.success == true) {
         localStorage.setItem("token", data.token);
-        this.router.navigate(["/admin/panel"]);
+        this.router.navigate(["/adminpanel"]);
       } else {
         console.log("username or password wrong");
       }

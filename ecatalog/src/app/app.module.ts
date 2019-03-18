@@ -1,28 +1,29 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from "@angular/forms";
-import { HttpClientModule } from "@angular/common/http";
+import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 
-import { AppRoutingModule } from './app-routing.module';
+import { APP_ROUTES } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LoginComponent } from './admin/login/login.component';
 import { HomeComponent } from './components/home/home.component';
-import { AdminPanelComponent } from './admin/admin-panel/admin-panel.component';
+import { AuthService } from './services/auth.service';
+import { AdminModule } from './admin/admin.module';
+import { RouterModule } from '@angular/router';
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
     HomeComponent,
-    AdminPanelComponent,
-    LoginComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
+    RouterModule.forRoot(APP_ROUTES),
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    AdminModule,
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS, useClass: AuthService, multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
