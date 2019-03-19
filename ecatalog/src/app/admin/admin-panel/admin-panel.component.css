@@ -1,16 +1,20 @@
-*{
-  margin: 0;
-  padding: 0;
-  font-family: 'Roboto Light', sans-serif;
-}
 .container{
   display: flex;
+  height: 100%;
+  flex-direction: row;
   background-color: #eeeeee;
 }
 .navbar{
   width: 15%; 
+  height: 100%;
+}
+.outlet{
+  width: 85%;
+  height: 100%;
+  background-color: #cecece;
 }
 ul{
+  width: max-content;
   background: #000000;
   color: #eeeeee;
   text-transform: uppercase;
