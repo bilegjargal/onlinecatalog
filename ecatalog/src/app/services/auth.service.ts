@@ -19,4 +19,13 @@ export class AuthService implements HttpInterceptor {
     }
   }
 
+  isAuthenticated() {
+    const idToken = localStorage.getItem("token");
+    if (idToken) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
 }

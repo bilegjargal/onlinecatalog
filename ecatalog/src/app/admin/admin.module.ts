@@ -9,6 +9,7 @@ import { CategoryComponent } from './category/category.component';
 import { NewsComponent } from './news/news.component';
 import { ContactComponent } from './contact/contact.component';
 import { ReactiveFormsModule } from "@angular/forms"
+import { AuthGuard } from '../guards/auth-guard.service';
 @NgModule({
   declarations: [AdminPanelComponent, LoginComponent, ProductComponent, CategoryComponent, NewsComponent, ContactComponent],
   imports: [
@@ -19,6 +20,7 @@ import { ReactiveFormsModule } from "@angular/forms"
   exports: [
     LoginComponent,
     AdminPanelComponent
-  ]
+  ],
+  providers: [AuthGuard]
 })
 export class AdminModule { }
