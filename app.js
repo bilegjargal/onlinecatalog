@@ -54,7 +54,6 @@ app.post("/login", async function (req, res) {
         if (err)
           console.log(err);
         if (req.body.password == data.password) { // change it later by using bcrypt
-          console.log("user is valid", data.password);
           user = data;
         }
         if (user) { //if user is found
