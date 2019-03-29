@@ -6,8 +6,19 @@
       <li><a routerLink="category">Category</a></li>
       <li><a routerLink="addnews">News</a></li>
       <li><a routerLink="contact"> Contact</a></li>
-      <li (click)="logout()"> Logout</li>
+      <li (click)="openModal('modal-logout');"> Logout</li>
     </ul>
   </div>
+  <modal id="modal-logout">
+    <div class="modal">
+      <div class="modal-body">
+        <h1>Logout</h1>
+        <p>Are you sure to logout?</p>
+        <button (click)="logout('modal-logout');">OK</button>
+        <button (click)="closeModal('modal-logout');">Cancel</button>
+      </div>
+    </div>
+    <div class="modal-background"></div>
+  </modal>
   <router-outlet></router-outlet>
 </div>

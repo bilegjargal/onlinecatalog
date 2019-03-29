@@ -9,6 +9,4 @@ export const APP_ROUTES: Routes = [{
   path: 'admin', component: LoginComponent
 }, {
   path: 'home', component: HomeComponent
-}, {
-  path: 'admin/panel', component: AdminPanelComponent
 }];
