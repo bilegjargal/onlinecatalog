@@ -7,17 +7,13 @@ html {
   flex-direction: row;
   background-color: #eeeeee;
 }
+
 .navbar{
   display: flex;
   flex-direction: column;
-  width: 15%;
   height: 100%;
 }
-.outlet{
-  width: 85%;
-  height: 100%;
-  background-color: #cecece;
-}
+
 ul{
   width: max-content;
   background: #000000;
@@ -37,25 +33,38 @@ li a{
   text-decoration: none;
 }
 
+.child-container{
+  margin: 25px 50px;
+  width: 100%;
+  background-color: aqua;
+}
+
+/*Modal*/
 modal{
   display: none;
 }
 
 .modal{
-  position: fixed;
+  position: absolute;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
   width: 300px;
+  max-width: 100%;
   height: 200px;
+  max-height: 100%;
   margin: auto;
   z-index: 1000;
   overflow: auto;
+  transition: 1.1s ease-out;
 }
 
 .modal-body{
-  background: rgb(75, 75, 75);
+  text-align: center;
+  background: rgb(255, 255, 255);
+  border-radius: 10px;
+
 }
 
 .modal-background{
@@ -67,4 +76,31 @@ modal{
   background-color: #000;
   opacity: 0.75;
   z-index: 900;
+}
+
+.modal-body h4{
+  border-bottom: 1px solid #ccc;
+  padding: 1rem;
+  margin: 0;
+}
+
+.modal-body .content{
+  padding: 1rem;
+}
+
+.modal-body .action{
+  border-top: 1px solid #ccc;
+  background: #eee;
+  padding: 0.5rem 1rem;
+  border-radius: 0px 0px 10px 10px;
+}
+
+.modal-body .action button{
+  border: 0;
+  background: #78f89f;
+  border-radius: 5px;
+  padding: 0.5rem 1rem;
+  font-size: 0.8rem;
+  margin: 0rem 0.5rem;
+  line-height: 1;  
 }

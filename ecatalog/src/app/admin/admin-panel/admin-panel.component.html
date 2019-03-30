@@ -12,13 +12,20 @@
   <modal id="modal-logout">
     <div class="modal">
       <div class="modal-body">
-        <h1>Logout</h1>
-        <p>Are you sure to logout?</p>
-        <button (click)="logout('modal-logout');">OK</button>
-        <button (click)="closeModal('modal-logout');">Cancel</button>
+        <h4>Logout</h4>
+        <div class="content">
+          <p>Are you sure to logout?</p>
+        </div>
+        <div class="action">
+          <button (click)="logout('modal-logout');">OK</button>
+          <button (click)="closeModal('modal-logout');">Cancel</button>
+        </div>
       </div>
     </div>
     <div class="modal-background"></div>
   </modal>
-  <router-outlet></router-outlet>
+  <div class="child-container">
+    <router-outlet></router-outlet>
+  </div>
+
 </div>
